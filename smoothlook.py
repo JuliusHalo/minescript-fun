@@ -40,6 +40,19 @@ def look(target_yaw, target_pitch, duration=0.22, steps=70):
 
     if CONFIRM_YAW_PITCH:
         minescript.player_set_orientation(target_yaw, target_pitch)
+#for entity targetted
+def target_yaw_pitch_entity(player_pos, entity_pos):
+    px, py, pz = player_pos
+    ex, ey, ez = entity_pos
+
+    dx = ex - px
+    dy = ey - py
+    dz = ez - pz
+
+    yaw = math.degrees(math.atan2(-dx, dz))
+    pitch = math.degrees(-math.atan2(dy, math.sqrt(dx * dx + dz * dz)))
+
+    return yaw, pitch
 
 if __name__ == "__main__":
     look()
